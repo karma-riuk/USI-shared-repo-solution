@@ -18,56 +18,43 @@ be able to create **private repositories** hosted on Github.
 
 ### Step-by-step solution
 
-#### On Github
+The solution stated here are with the `https` github urls, if you want the
+`ssh` version, see the [README_ssh.md](./README_ssh.md) file.
+
+#### Student A
+
+##### On Github
 1. With your Github-Pro account, create a new **private** repository, preferably with the same name as
 the assignment you want to do in pair, for example `1-html-css`. This
 repository will have a clone url like the one below
-<!-- - With `https`: -->
    ```
    https://github.com/student-A/1-html-css.git
    ```
-<!-- - With `ssh`: -->
-<!--    ``` -->
-<!--    git@github.com:student-A/1-html-css.git -->
-<!--    ``` -->
-2. Student A now has to add their pair as a collaborator on this repo, so that
-   they can both access the newly created repo. To do so, they must go on the
-   github page of the newly created repo, Settings->Manage Access->Private
-   Repository->Manage, and then insert the name of the github account of their
-   pair.
+2. Add Student B as a collaborator on this repo, so that you can both access
+   the newly created repo. To do so, go on the github page of the
+   newly created repo, Settings->Manage Access->Invite a collaborator, and
+   then insert the name of the github account Student B.
 
-#### On your laptop
+##### On your laptop
 
 3. Clone the official Github-Classroom repo. See the line below as an example.
-    ```
-    git clone https://github.com/USI-Web-Atelier-2021/1-html-css-student-A.git
-    ```
+   ```
+   git clone https://github.com/USI-Web-Atelier-2021/1-html-css-student-A.git
+   ```
 4. Change the url settings of the local git repo so that now it pulls from the
    newly created common private repository (you can do either with `https` or `ssh`).
-   <!-- - With `https`: -->
    ```
    git remote set-url origin https://github.com/student-A/1-html-css.git
    ```
-   <!-- - With `ssh`: -->
-   <!--     ``` -->
-   <!--     git remote set-url origin git@github.com:student-A/1-html-css.git -->
-   <!--     ``` -->
-    To check if you have completed this step successfully try the command
-    ```
-    git remote -v
-    ```
-    and the output should something like
-
-   <!-- - With `https`: -->
+   To check if you have completed this step successfully try the command
+   ```
+   git remote -v
+   ```
+   and the output should something like
    ```
    origin https://github.com/student-A/1-html-css.git(fetch)
    origin https://github.com/student-A/1-html-css.git(push)
    ```
-   <!-- - With `ssh`: -->
-   <!--     ``` -->
-   <!--     origin git@github.com:student-A/1-html-css.git(fetch) -->
-   <!--     origin git@github.com:student-A/1-html-css.git(push) -->
-   <!--     ``` -->
 5. Add back the official Github-Classroom repository (be careful to add **your
    own** repo, and not the one of your teammate) as a push remote so that all
    the changes made are stored in the official repo.
@@ -79,28 +66,53 @@ repository will have a clone url like the one below
     git remote -v
     ```
     and the output should something like
-
-   <!-- - With `https`: -->
    ```
    origin https://github.com/student-A/1-html-css.git(fetch)
    origin https://github.com/student-A/1-html-css.git(push)
    origin https://github.com/USI-Web-Atelier-2021/1-html-css-student-A.git(push)
    ```
-   <!-- - With `ssh`: -->
-   <!--     ``` -->
-   <!--     origin git@github.com:student-A/1-html-css.git(fetch) -->
-   <!--     origin git@github.com:student-A/1-html-css.git(push) -->
-   <!--     origin git@github.com:USI-Web-Atelier-2021/1-html-css-student-A.git(push) -->
-   <!--     ``` -->
-6. Student B now just has to follow steps 1 through 3, but using their own
-   `USI-Web-Atelier` github repo
+6. Push the local repo to the newly created one
+   ```
+   git push -u origin master
+   ```
+#### Student B
 
-
+7. Accept the invitation of Student A to collaborate on the newly created
+   private repo (the invitation should be located in your USI email inbox).
+8. Clone the repo created by Student A
     ```
-    git pull --allow-unrelated-histories
+    git clone https://github.com/student-A/1-html-css.git
+    ```
+9. Add the official Github-Classroom repository (be careful to add **your
+   own** repo, and not the one of your teammate) as a push remote so that all
+   the changes made are stored in the official repo.
    ```
-   https://github.com/USI-Web-Atelier-2021/1-html-css-student-B.git
+   git remote set-url --add origin https://github.com/USI-Web-Atelier-2021/1-html-css-student-A.git
    ```
+   To check if you have completed this step successfully try the command
+   ```
+   git remote -v
+   ```
+    and the output should something like
+   ```
+   origin https://github.com/student-A/1-html-css.git(fetch)
+   origin https://github.com/student-A/1-html-css.git(push)
+   origin https://github.com/USI-Web-Atelier-2021/1-html-css-student-B.git(push)
+   ```
+10. Force a push so that your local repo is the same as the official repo
+    ```
+    git push -fu origin master
+    ```
+    (in some cases the default branch is called `main`, if the previous command
+    failed, try to replace `master` with `main`).
+
+### You're done!
+Now every time you want to upload your commits, you can just perform 
+```
+git push
+```
+and all of them will be uploaded to both the Github-Classroom and the common
+repository.
 
 
 ## Negative points
