@@ -19,7 +19,7 @@ be able to create **private repositories** hosted on Github.
 ### Step-by-step solution
 
 The solution stated here are with the `ssh` github urls, if you want the
-`https` version, see the [README.md](./READM.md) file.
+`https` version, see the [README.md](./README.md) file.
 
 #### Student A
 
